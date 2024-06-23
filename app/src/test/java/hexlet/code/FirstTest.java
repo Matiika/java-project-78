@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class FirstTest {
 
     @Test
-    public void SimpleTest() {
+    public void simpleTest() {
 
         var v = new Validator();
 
