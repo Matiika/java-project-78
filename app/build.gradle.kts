@@ -1,6 +1,6 @@
 plugins {
     application
-    id("checkstyle")
+    checkstyle
     jacoco
 }
 
