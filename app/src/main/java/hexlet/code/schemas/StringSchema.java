@@ -22,6 +22,8 @@ public class StringSchema {
             if (str == null || str.isEmpty()) {
                 return false;
             }
+        } else if (str == null) {
+            return true;
         }
 
         if (!contains.isEmpty()) {
