@@ -1,9 +1,9 @@
 package hexlet.code.schemas;
 
-public class NumberSchema {
+import hexlet.code.BaseSchema;
 
+public class NumberSchema extends BaseSchema {
 
-    private boolean required;
     private boolean positive;
     private Integer rangeMin;
     private Integer rangeMax;

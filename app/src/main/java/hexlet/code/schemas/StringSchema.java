@@ -1,16 +1,17 @@
 package hexlet.code.schemas;
 
+import hexlet.code.BaseSchema;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class StringSchema {
+public class StringSchema extends BaseSchema {
 
-    private boolean required;
     private Integer minLength;
     private List<String> contains;
 
     public StringSchema() {
-        this.required = false;
+        super();
         this.contains = new ArrayList<>();
         this.minLength = null;
     }
