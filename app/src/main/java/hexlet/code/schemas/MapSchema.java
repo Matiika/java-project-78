@@ -83,6 +83,7 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         return true;
     }
 
+
     public MapSchema required() {
         this.required = true;
         return this;
