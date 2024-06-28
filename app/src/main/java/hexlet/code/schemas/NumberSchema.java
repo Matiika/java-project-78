@@ -41,32 +41,6 @@ public final class NumberSchema extends BaseSchema<Integer> {
         return true;
     }
 
-    /*public boolean isValid(Integer number) {
-        boolean valid = true;
-
-        if (required) {
-            if (number == null) {
-                return false;
-            }
-        } else if (number == null) {
-            return true;
-        }
-
-        if (positive) {
-            if (number < 1) {
-                return false;
-            }
-        }
-
-        if (rangeMin != null) {
-            if (number < rangeMin || number > rangeMax) {
-                return false;
-            }
-        }
-
-        return valid;
-    }*/
-
 
     public NumberSchema positive() {
         this.positive = true;
@@ -85,14 +59,5 @@ public final class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
 
-    /*@Override
-    public String toString() {
-        return "NumberSchema{" +
-                "requierd=" + super.required +
-                ", positive=" + positive +
-                ", rangeMin=" + rangeMin +
-                ", rangeMax=" + rangeMax +
-                '}';
-    }*/
 }
 

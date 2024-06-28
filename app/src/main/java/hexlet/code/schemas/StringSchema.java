@@ -45,34 +45,6 @@ public final class StringSchema extends BaseSchema<String> {
         return true;
     }
 
-    /*public boolean isValid(String str) {
-        boolean valid = true;
-
-        if (required) {
-            if (str == null || str.isEmpty()) {
-                return false;
-            }
-        } else if (str == null) {
-            return true;
-        }
-
-        if (!contains.isEmpty()) {
-            for (var contain : contains) {
-                if (!str.contains(contain)) {
-                    return false;
-                }
-            }
-        }
-
-        if (minLength != null) {
-            if (str.length() < minLength) {
-                return false;
-            }
-        }
-
-        return valid;
-    }*/
-
     public StringSchema contains(String str) {
         this.contains.add(str);
         return this;
@@ -88,12 +60,4 @@ public final class StringSchema extends BaseSchema<String> {
         return this;
     }
 
-    /*@Override
-    public String toString() {
-        return "StringSchema{" +
-                "requierd=" + super.required +
-                ", minLength=" + minLength +
-                ", contains=" + contains +
-                '}';
-    }*/
 }
