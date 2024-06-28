@@ -1,7 +1,5 @@
 package hexlet.code.schemas;
 
-import hexlet.code.BaseSchema;
-
 public class NumberSchema extends BaseSchema<Integer> {
 
     private boolean positive;
