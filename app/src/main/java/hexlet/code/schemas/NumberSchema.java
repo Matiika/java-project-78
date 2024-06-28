@@ -2,7 +2,7 @@ package hexlet.code.schemas;
 
 import hexlet.code.BaseSchema;
 
-public class NumberSchema extends BaseSchema {
+public class NumberSchema extends BaseSchema<Integer> {
 
     private boolean positive;
     private Integer rangeMin;
@@ -15,7 +15,35 @@ public class NumberSchema extends BaseSchema {
         this.rangeMax = null;
     }
 
-    public boolean isValid(Integer number) {
+    @Override
+    public boolean isValid(Object value) {
+
+        Integer number = (Integer) value;
+
+        if (required) {
+            if (number == null) {
+                return false;
+            }
+        } else if (number == null) {
+            return true;
+        }
+
+        if (positive) {
+            if (number < 1) {
+                return false;
+            }
+        }
+
+        if (rangeMin != null) {
+            if (number < rangeMin || number > rangeMax) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    /*public boolean isValid(Integer number) {
         boolean valid = true;
 
         if (required) {
@@ -39,7 +67,7 @@ public class NumberSchema extends BaseSchema {
         }
 
         return valid;
-    }
+    }*/
 
 
     public NumberSchema positive() {
@@ -59,5 +87,14 @@ public class NumberSchema extends BaseSchema {
         return this;
     }
 
+    /*@Override
+    public String toString() {
+        return "NumberSchema{" +
+                "requierd=" + super.required +
+                ", positive=" + positive +
+                ", rangeMin=" + rangeMin +
+                ", rangeMax=" + rangeMax +
+                '}';
+    }*/
 }
 
