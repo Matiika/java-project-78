@@ -134,4 +134,64 @@ public class FirstTest {
         assertFalse(schema.isValid(human3)); // false
     }
 
+    /*@Test
+    public void predicateStringTest() {
+
+        var v = new Validator();
+
+        var schema = v.string();
+
+        assertTrue(schema.isValidPredicate("")); // true
+        assertTrue(schema.isValidPredicate(null)); // true
+
+        schema.requiredPredicate();
+
+        assertFalse(schema.isValidPredicate(null)); // false
+        assertFalse(schema.isValidPredicate("")); // false
+        assertTrue(schema.isValidPredicate("what does the fox say")); // true
+        assertTrue(schema.isValidPredicate("hexlet")); // true
+
+        assertTrue(schema.containsPredicate("wh").isValidPredicate("what does the fox say")); // true
+        assertTrue(schema.containsPredicate("what").isValidPredicate("what does the fox say")); // true
+        assertFalse(schema.containsPredicate("whatthe").isValidPredicate("what does the fox say")); // false
+
+        assertFalse(schema.isValidPredicate("what does the fox say")); // false
+
+        var schema1 = v.string();
+        assertTrue(schema1.minLengthPredicate(10).minLengthPredicate(4).isValidPredicate("Hexlet")); // true
+
+    }*/
+
+    /*@Test
+    public void numberPredTest() {
+
+        var v = new Validator();
+
+        var schema = v.number();
+
+        assertTrue(schema.isValidPredicate(5)); // true
+
+// Пока не вызван метод required(), null считается валидным
+        assertTrue(schema.isValidPredicate(null)); // true
+        assertTrue(schema.positivePredicate().isValidPredicate(null)); // true
+
+        schema.requiredPredicate();
+
+        assertFalse(schema.isValidPredicate(null)); // false
+        assertTrue(schema.isValidPredicate(10)); // true
+
+// Потому что ранее мы вызвали метод positive()
+        assertFalse(schema.isValidPredicate(-10)); // false
+//  Ноль — не положительное число
+        assertFalse(schema.isValidPredicate(0)); // false
+
+        schema.rangePredicate(5, 10);
+
+        assertTrue(schema.isValidPredicate(5)); // true
+        assertTrue(schema.isValidPredicate(10)); // true
+        assertFalse(schema.isValidPredicate(4)); // false
+        assertFalse(schema.isValidPredicate(11)); // false
+
+    }*/
+
 }

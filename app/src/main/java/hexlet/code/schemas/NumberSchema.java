@@ -1,5 +1,7 @@
 package hexlet.code.schemas;
 
+import java.util.function.Predicate;
+
 public final class NumberSchema extends BaseSchema<Integer> {
 
     private boolean positive;
@@ -13,7 +15,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
         this.rangeMax = null;
     }
 
-    @Override
+   /* @Override
     public boolean isValid(Object value) {
 
         Integer number = (Integer) value;
@@ -39,10 +41,53 @@ public final class NumberSchema extends BaseSchema<Integer> {
         }
 
         return true;
+    }*/
+
+    public NumberSchema required() {
+        this.required = true;
+        Predicate<Object> reqPredicate = value -> {
+            Integer numberValue = (Integer) value;
+            if (numberValue == null) {
+                return false;
+            }
+            return true;
+        };
+        addCheck("required", reqPredicate);
+        return this;
+    }
+
+    public NumberSchema positive() {
+        this.positive = true;
+        Predicate<Object> positPredicate = value -> {
+            if (!required && value == null) {
+                return true;
+            }
+
+            if (value == null) {
+                return false;
+            }
+
+            Integer numberValue = (Integer) value;
+            return numberValue >= 1;
+        };
+        addCheck("positive", positPredicate);
+        return this;
+    }
+
+    public NumberSchema range(int min, int max) {
+        this.rangeMin = min;
+        this.rangeMax = max;
+        Predicate<Object> ranPredicate = value -> {
+            Integer numberValue = (Integer) value;
+            return numberValue >= rangeMin && numberValue <= rangeMax;
+        };
+        addCheck("positive", ranPredicate);
+        return this;
     }
 
 
-    public NumberSchema positive() {
+
+    /*public NumberSchema positive() {
         this.positive = true;
         return this;
     }
@@ -57,7 +102,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
         this.rangeMin = min;
         this.rangeMax = max;
         return this;
-    }
+    }*/
 
 }
 

@@ -2,6 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public final class StringSchema extends BaseSchema<String> {
 
@@ -14,7 +15,7 @@ public final class StringSchema extends BaseSchema<String> {
         this.minLength = null;
     }
 
-    @Override
+    /*@Override
     public boolean isValid(Object value) {
 
         String str = (String) value;
@@ -23,8 +24,6 @@ public final class StringSchema extends BaseSchema<String> {
             if (str == null || str.isEmpty()) {
                 return false;
             }
-        } else if (str == null) {
-            return true;
         }
 
 
@@ -43,9 +42,56 @@ public final class StringSchema extends BaseSchema<String> {
         }
 
         return true;
-    }
+    }*/
 
     public StringSchema contains(String str) {
+        this.contains.add(str);
+        Predicate<Object> containsAllPredicate = value -> {
+            String strValue = (String) value;
+            if (!contains.isEmpty()) {
+                for (String contain : contains) {
+                    if (!strValue.contains(contain)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
+        addCheck("contains", containsAllPredicate);
+        return this;
+    }
+
+    public StringSchema required() {
+        this.required = true;
+        Predicate<Object> reqPredicate = value -> {
+            String strValue = (String) value;
+            return strValue != null && !strValue.isEmpty();
+        };
+        addCheck("required", reqPredicate);
+        return this;
+    }
+
+    public StringSchema minLength(Integer newMinLength) {
+        this.minLength = newMinLength;
+        Predicate<Object> minLengthPre = value -> {
+            String strValue = (String) value;
+            if (minLength != null) {
+                return strValue.length() >= minLength;
+            }
+            return true;
+        };
+        addCheck("minLenth", minLengthPre);
+        return this;
+    }
+
+
+
+
+
+
+
+
+   /* public StringSchema contains(String str) {
         this.contains.add(str);
         return this;
     }
@@ -58,6 +104,6 @@ public final class StringSchema extends BaseSchema<String> {
     public StringSchema minLength(Integer newMinLength) {
         this.minLength = newMinLength;
         return this;
-    }
+    }*/
 
 }
