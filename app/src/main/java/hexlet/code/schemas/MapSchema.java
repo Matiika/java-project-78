@@ -2,6 +2,7 @@ package hexlet.code.schemas;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map<?, ?>> {
 
@@ -14,19 +15,57 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         this.size = null;
     }
 
-    public MapSchema sizeof(Integer newSize) {
+   /* public MapSchema sizeof(Integer newSize) {
         this.size = newSize;
         return this;
-    }
+    }*/
 
-    public <T> void shape(Map<String, BaseSchema<T>> map) {
+    public <T> MapSchema shape(Map<String, BaseSchema<T>> map) {
         for (var key : map.keySet()) {
             this.rules.put(key, map.get(key));
         }
+        Predicate<Object> shapePredicate = value -> {
+            Map mapValue = (Map) value;
+            for (var key : mapValue.keySet()) {
+                if (this.rules.containsKey(key)) {
+                    BaseSchema rule = rules.get(key);
+                    var valueToCheck = mapValue.get(key);
+                    if (!rule.isValid(valueToCheck)) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        };
+        addCheck("shape", shapePredicate);
+        return this;
+    }
+
+    public MapSchema required() {
+        this.required = true;
+        Predicate<Object> reqPredicate = value -> {
+            Map mapValue = (Map) value;
+            return mapValue != null;
+        };
+        addCheck("required", reqPredicate);
+        return this;
+    }
+
+    public MapSchema sizeof(Integer newSize) {
+        this.size = newSize;
+        Predicate<Object> reqPredicate = value -> {
+            Map mapValue = (Map) value;
+            return (size == null) || (mapValue.size() == size);
+        };
+        addCheck("required", reqPredicate);
+        return this;
     }
 
 
-    @Override
+
+
+
+    /*@Override
     public boolean isValid(Object value) {
 
         var map = (Map) value;
@@ -53,13 +92,13 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         }
 
         return true;
-    }
+    }*/
 
 
-    public MapSchema required() {
+    /*public MapSchema required() {
         this.required = true;
         return this;
-    }
+    }*/
 
 
 }

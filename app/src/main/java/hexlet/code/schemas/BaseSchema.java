@@ -21,13 +21,8 @@ public abstract class BaseSchema<T> {
     /*public abstract boolean isValid(Object value);*/
 
 
-    /**
-     * Checks if the value is valid.
-     * Subclasses can override this method to provide specific validation logic.
-     * @param value
-     * @return true if the schema is valid, false otherwise
-     */
-    public boolean isValid(Object value) {
+
+    public final boolean isValid(Object value) {
 
         for (Predicate<Object> check : checks.values()) {
             if (!check.test(value)) {

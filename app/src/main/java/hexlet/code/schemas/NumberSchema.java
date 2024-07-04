@@ -47,10 +47,7 @@ public final class NumberSchema extends BaseSchema<Integer> {
         this.required = true;
         Predicate<Object> reqPredicate = value -> {
             Integer numberValue = (Integer) value;
-            if (numberValue == null) {
-                return false;
-            }
-            return true;
+            return numberValue != null;
         };
         addCheck("required", reqPredicate);
         return this;
