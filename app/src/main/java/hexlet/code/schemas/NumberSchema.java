@@ -15,34 +15,6 @@ public final class NumberSchema extends BaseSchema<Integer> {
         this.rangeMax = null;
     }
 
-   /* @Override
-    public boolean isValid(Object value) {
-
-        Integer number = (Integer) value;
-
-        if (required) {
-            if (number == null) {
-                return false;
-            }
-        } else if (number == null) {
-            return true;
-        }
-
-        if (positive) {
-            if (number < 1) {
-                return false;
-            }
-        }
-
-        if (rangeMin != null) {
-            if (number < rangeMin || number > rangeMax) {
-                return false;
-            }
-        }
-
-        return true;
-    }*/
-
     public NumberSchema required() {
         this.required = true;
         Predicate<Object> reqPredicate = value -> {
@@ -81,25 +53,6 @@ public final class NumberSchema extends BaseSchema<Integer> {
         addCheck("positive", ranPredicate);
         return this;
     }
-
-
-
-    /*public NumberSchema positive() {
-        this.positive = true;
-        return this;
-    }
-
-
-    public NumberSchema required() {
-        this.required = true;
-        return this;
-    }
-
-    public NumberSchema range(int min, int max) {
-        this.rangeMin = min;
-        this.rangeMax = max;
-        return this;
-    }*/
 
 }
 

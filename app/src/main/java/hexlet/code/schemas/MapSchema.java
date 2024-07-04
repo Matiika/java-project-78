@@ -15,11 +15,6 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         this.size = null;
     }
 
-   /* public MapSchema sizeof(Integer newSize) {
-        this.size = newSize;
-        return this;
-    }*/
-
     public <T> MapSchema shape(Map<String, BaseSchema<T>> map) {
         for (var key : map.keySet()) {
             this.rules.put(key, map.get(key));
@@ -60,45 +55,5 @@ public final class MapSchema extends BaseSchema<Map<?, ?>> {
         addCheck("required", reqPredicate);
         return this;
     }
-
-
-
-
-
-    /*@Override
-    public boolean isValid(Object value) {
-
-        var map = (Map) value;
-
-        if (required) {
-            if (map == null) {
-                return false;
-            }
-        } else if (map == null) {
-            return true;
-        }
-
-        if (size != null && map.size() != size) {
-            return false;
-        }
-
-        for (var key : map.keySet()) {
-            if (this.rules.containsKey(key)) {
-                BaseSchema rule = rules.get(key);
-                if (!rule.isValid(map.get(key))) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }*/
-
-
-    /*public MapSchema required() {
-        this.required = true;
-        return this;
-    }*/
-
 
 }

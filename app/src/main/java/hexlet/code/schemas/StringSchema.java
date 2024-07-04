@@ -15,35 +15,6 @@ public final class StringSchema extends BaseSchema<String> {
         this.minLength = null;
     }
 
-    /*@Override
-    public boolean isValid(Object value) {
-
-        String str = (String) value;
-
-        if (required) {
-            if (str == null || str.isEmpty()) {
-                return false;
-            }
-        }
-
-
-        if (!contains.isEmpty()) {
-            for (var contain : contains) {
-                if (!str.contains(contain)) {
-                    return false;
-                }
-            }
-        }
-
-        if (minLength != null) {
-            if (str.length() < minLength) {
-                return false;
-            }
-        }
-
-        return true;
-    }*/
-
     public StringSchema contains(String str) {
         this.contains.add(str);
         Predicate<Object> containsAllPredicate = value -> {
@@ -83,27 +54,5 @@ public final class StringSchema extends BaseSchema<String> {
         addCheck("minLenth", minLengthPre);
         return this;
     }
-
-
-
-
-
-
-
-
-   /* public StringSchema contains(String str) {
-        this.contains.add(str);
-        return this;
-    }
-
-    public StringSchema required() {
-        this.required = true;
-        return this;
-    }
-
-    public StringSchema minLength(Integer newMinLength) {
-        this.minLength = newMinLength;
-        return this;
-    }*/
 
 }

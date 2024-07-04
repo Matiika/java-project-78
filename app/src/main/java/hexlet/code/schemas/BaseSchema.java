@@ -18,10 +18,6 @@ public abstract class BaseSchema<T> {
         this.required = false;
     }
 
-    /*public abstract boolean isValid(Object value);*/
-
-
-
     public final boolean isValid(Object value) {
 
         for (Predicate<Object> check : checks.values()) {
